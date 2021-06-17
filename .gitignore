@@ -1,0 +1,10 @@
+config.h.in
+config.status
+stamp-h1w
+Makefile
+Makefile.in
+src/Makefile.in
+autom4te.cache
+config.h
+config.log
+
