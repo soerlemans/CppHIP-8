@@ -1,5 +1,6 @@
-main.o: main.cpp /usr/include/stdc-predef.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iostream \
+display.o: display.cpp /usr/include/stdc-predef.h display.hpp \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/array \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/utility \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/c++config.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/os_defines.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
@@ -7,6 +8,36 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/cpu_defines.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/pstl_config.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_relops.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_pair.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/move.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/type_traits \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/compare \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/concepts \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/initializer_list \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/numeric_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/cpp_type_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/type_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/functexcept.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception_defines.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_algobase.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator_base_types.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/iterator_concepts.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ptr_traits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ranges_cmp.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator_base_funcs.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/concept_check.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/debug/assertions.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/new \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/debug/debug.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/predefined_ops.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/range_access.h \
+ /usr/include/SFML/Graphics.hpp /usr/include/SFML/Window.hpp \
+ /usr/include/SFML/System.hpp /usr/include/SFML/Config.hpp \
+ /usr/include/SFML/System/Clock.hpp /usr/include/SFML/System/Export.hpp \
+ /usr/include/SFML/System/Time.hpp /usr/include/SFML/System/Err.hpp \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ostream \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ios \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iosfwd \
@@ -24,35 +55,12 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/locale_t.h \
  /usr/include/bits/types/__locale_t.h /usr/include/bits/wchar2.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/exception \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception_ptr.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception_defines.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/cxxabi_init_exception.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/typeinfo \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/hash_bytes.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/new \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/nested_exception.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/move.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/type_traits \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/char_traits.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_algobase.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/functexcept.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/cpp_type_traits.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/type_traits.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/numeric_traits.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_pair.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/compare \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/concepts \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator_base_types.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/iterator_concepts.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ptr_traits.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ranges_cmp.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator_base_funcs.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/concept_check.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/debug/assertions.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/debug/debug.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/predefined_ops.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/cstdint \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/types.h \
@@ -107,12 +115,10 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/include/bits/stdlib.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/std_abs.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/algorithmfwd.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/initializer_list \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_heap.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_tempbuf.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_construct.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/uniform_int_dist.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/range_access.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/basic_string.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/alloc_traits.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/alloc_traits.h \
@@ -153,17 +159,14 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/locale_facets.tcc \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/basic_ios.tcc \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ostream.tcc \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/istream \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/istream.tcc \
- chip8.hpp /usr/include/SFML/Graphics/RenderWindow.hpp \
- /usr/include/SFML/Graphics/Export.hpp /usr/include/SFML/Config.hpp \
- /usr/include/SFML/Graphics/RenderTarget.hpp \
- /usr/include/SFML/Graphics/Color.hpp /usr/include/SFML/Graphics/Rect.hpp \
- /usr/include/SFML/System/Vector2.hpp \
- /usr/include/SFML/System/Vector2.inl \
+ /usr/include/SFML/System/FileInputStream.hpp \
+ /usr/include/SFML/System/InputStream.hpp \
+ /usr/include/SFML/System/NonCopyable.hpp \
+ /usr/include/SFML/System/Lock.hpp \
+ /usr/include/SFML/System/MemoryInputStream.hpp \
+ /usr/include/SFML/System/Mutex.hpp /usr/include/SFML/System/Sleep.hpp \
+ /usr/include/SFML/System/String.hpp /usr/include/SFML/System/Utf.hpp \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/algorithm \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/utility \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_relops.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ranges_algo.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ranges_algobase.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iterator \
@@ -173,7 +176,6 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/glue_algorithm_defs.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/functional \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tuple \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/array \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/uses_allocator.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/refwrap.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/std_function.h \
@@ -190,23 +192,6 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_bvector.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/vector.tcc \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/execution_defs.h \
- /usr/include/SFML/Graphics/Rect.inl /usr/include/SFML/Graphics/View.hpp \
- /usr/include/SFML/Graphics/Transform.hpp \
- /usr/include/SFML/Graphics/BlendMode.hpp \
- /usr/include/SFML/Graphics/RenderStates.hpp \
- /usr/include/SFML/Graphics/PrimitiveType.hpp \
- /usr/include/SFML/Graphics/Vertex.hpp \
- /usr/include/SFML/System/NonCopyable.hpp \
- /usr/include/SFML/System/Export.hpp /usr/include/SFML/Graphics/Image.hpp \
- /usr/include/SFML/Window/Window.hpp \
- /usr/include/SFML/Window/ContextSettings.hpp \
- /usr/include/SFML/Window/Cursor.hpp /usr/include/SFML/Window/Export.hpp \
- /usr/include/SFML/Window/GlResource.hpp \
- /usr/include/SFML/Window/VideoMode.hpp \
- /usr/include/SFML/Window/WindowHandle.hpp \
- /usr/include/SFML/Window/WindowStyle.hpp \
- /usr/include/SFML/System/Clock.hpp /usr/include/SFML/System/Time.hpp \
- /usr/include/SFML/System/String.hpp /usr/include/SFML/System/Utf.hpp \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/locale \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/locale_facets_nonio.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ctime \
@@ -218,46 +203,61 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/locale_conv.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/unique_ptr.h \
  /usr/include/SFML/System/Utf.inl /usr/include/SFML/System/String.inl \
- /usr/include/SFML/Graphics.hpp /usr/include/SFML/Window.hpp \
- /usr/include/SFML/System.hpp /usr/include/SFML/System/Err.hpp \
- /usr/include/SFML/System/FileInputStream.hpp \
- /usr/include/SFML/System/InputStream.hpp \
- /usr/include/SFML/System/Lock.hpp \
- /usr/include/SFML/System/MemoryInputStream.hpp \
- /usr/include/SFML/System/Mutex.hpp /usr/include/SFML/System/Sleep.hpp \
  /usr/include/SFML/System/Thread.hpp /usr/include/SFML/System/Thread.inl \
  /usr/include/SFML/System/ThreadLocal.hpp \
  /usr/include/SFML/System/ThreadLocalPtr.hpp \
  /usr/include/SFML/System/ThreadLocalPtr.inl \
+ /usr/include/SFML/System/Vector2.hpp \
+ /usr/include/SFML/System/Vector2.inl \
  /usr/include/SFML/System/Vector3.hpp \
  /usr/include/SFML/System/Vector3.inl \
  /usr/include/SFML/Window/Clipboard.hpp \
- /usr/include/SFML/Window/Context.hpp /usr/include/SFML/Window/Event.hpp \
+ /usr/include/SFML/Window/Export.hpp /usr/include/SFML/Window/Context.hpp \
+ /usr/include/SFML/Window/GlResource.hpp \
+ /usr/include/SFML/Window/ContextSettings.hpp \
+ /usr/include/SFML/Window/Cursor.hpp /usr/include/SFML/Window/Event.hpp \
  /usr/include/SFML/Window/Joystick.hpp \
  /usr/include/SFML/Window/Keyboard.hpp /usr/include/SFML/Window/Mouse.hpp \
  /usr/include/SFML/Window/Sensor.hpp /usr/include/SFML/Window/Touch.hpp \
+ /usr/include/SFML/Window/VideoMode.hpp \
+ /usr/include/SFML/Window/Window.hpp \
+ /usr/include/SFML/Window/WindowHandle.hpp \
+ /usr/include/SFML/Window/WindowStyle.hpp \
+ /usr/include/SFML/Graphics/BlendMode.hpp \
+ /usr/include/SFML/Graphics/Export.hpp \
  /usr/include/SFML/Graphics/CircleShape.hpp \
  /usr/include/SFML/Graphics/Shape.hpp \
  /usr/include/SFML/Graphics/Drawable.hpp \
+ /usr/include/SFML/Graphics/RenderStates.hpp \
+ /usr/include/SFML/Graphics/Transform.hpp \
+ /usr/include/SFML/Graphics/Rect.hpp /usr/include/SFML/Graphics/Rect.inl \
  /usr/include/SFML/Graphics/Transformable.hpp \
  /usr/include/SFML/Graphics/VertexArray.hpp \
+ /usr/include/SFML/Graphics/Vertex.hpp \
+ /usr/include/SFML/Graphics/Color.hpp \
+ /usr/include/SFML/Graphics/PrimitiveType.hpp \
  /usr/include/SFML/Graphics/ConvexShape.hpp \
  /usr/include/SFML/Graphics/Font.hpp /usr/include/SFML/Graphics/Glyph.hpp \
  /usr/include/SFML/Graphics/Texture.hpp \
+ /usr/include/SFML/Graphics/Image.hpp \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/map \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_tree.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_map.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_multimap.h \
  /usr/include/SFML/Graphics/RectangleShape.hpp \
+ /usr/include/SFML/Graphics/RenderTarget.hpp \
+ /usr/include/SFML/Graphics/View.hpp \
  /usr/include/SFML/Graphics/RenderTexture.hpp \
+ /usr/include/SFML/Graphics/RenderWindow.hpp \
  /usr/include/SFML/Graphics/Shader.hpp \
  /usr/include/SFML/Graphics/Glsl.hpp /usr/include/SFML/Graphics/Glsl.inl \
  /usr/include/SFML/Graphics/Sprite.hpp \
  /usr/include/SFML/Graphics/Text.hpp \
- /usr/include/SFML/Graphics/VertexBuffer.hpp memory.hpp utils.hpp \
- registermap.hpp stack.hpp display.hpp
+ /usr/include/SFML/Graphics/VertexBuffer.hpp utils.hpp
 /usr/include/stdc-predef.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iostream:
+display.hpp:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/array:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/utility:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/c++config.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/os_defines.h:
 /usr/include/features.h:
@@ -268,6 +268,40 @@ main.o: main.cpp /usr/include/stdc-predef.h \
 /usr/include/gnu/stubs-64.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/cpu_defines.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/pstl_config.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_relops.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_pair.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/move.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/type_traits:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/compare:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/concepts:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/initializer_list:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/numeric_traits.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/cpp_type_traits.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/type_traits.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/functexcept.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception_defines.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_algobase.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator_base_types.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/iterator_concepts.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ptr_traits.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ranges_cmp.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator_base_funcs.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/concept_check.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/debug/assertions.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/new:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/debug/debug.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/predefined_ops.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/range_access.h:
+/usr/include/SFML/Graphics.hpp:
+/usr/include/SFML/Window.hpp:
+/usr/include/SFML/System.hpp:
+/usr/include/SFML/Config.hpp:
+/usr/include/SFML/System/Clock.hpp:
+/usr/include/SFML/System/Export.hpp:
+/usr/include/SFML/System/Time.hpp:
+/usr/include/SFML/System/Err.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ostream:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ios:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iosfwd:
@@ -291,35 +325,12 @@ main.o: main.cpp /usr/include/stdc-predef.h \
 /usr/include/bits/types/__locale_t.h:
 /usr/include/bits/wchar2.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/exception:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception_ptr.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/exception_defines.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/cxxabi_init_exception.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/typeinfo:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/hash_bytes.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/new:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/nested_exception.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/move.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/type_traits:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/char_traits.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_algobase.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/functexcept.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/cpp_type_traits.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/type_traits.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/numeric_traits.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_pair.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/compare:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/concepts:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator_base_types.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/iterator_concepts.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ptr_traits.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ranges_cmp.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator_base_funcs.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/concept_check.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/debug/assertions.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_iterator.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/debug/debug.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/predefined_ops.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/cstdint:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdint.h:
 /usr/include/stdint.h:
@@ -396,12 +407,10 @@ main.o: main.cpp /usr/include/stdc-predef.h \
 /usr/include/bits/stdlib.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/std_abs.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/algorithmfwd.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/initializer_list:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_heap.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_tempbuf.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_construct.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/uniform_int_dist.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/range_access.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/basic_string.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ext/alloc_traits.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/alloc_traits.h:
@@ -448,20 +457,16 @@ main.o: main.cpp /usr/include/stdc-predef.h \
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/locale_facets.tcc:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/basic_ios.tcc:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ostream.tcc:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/istream:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/istream.tcc:
-chip8.hpp:
-/usr/include/SFML/Graphics/RenderWindow.hpp:
-/usr/include/SFML/Graphics/Export.hpp:
-/usr/include/SFML/Config.hpp:
-/usr/include/SFML/Graphics/RenderTarget.hpp:
-/usr/include/SFML/Graphics/Color.hpp:
-/usr/include/SFML/Graphics/Rect.hpp:
-/usr/include/SFML/System/Vector2.hpp:
-/usr/include/SFML/System/Vector2.inl:
+/usr/include/SFML/System/FileInputStream.hpp:
+/usr/include/SFML/System/InputStream.hpp:
+/usr/include/SFML/System/NonCopyable.hpp:
+/usr/include/SFML/System/Lock.hpp:
+/usr/include/SFML/System/MemoryInputStream.hpp:
+/usr/include/SFML/System/Mutex.hpp:
+/usr/include/SFML/System/Sleep.hpp:
+/usr/include/SFML/System/String.hpp:
+/usr/include/SFML/System/Utf.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/algorithm:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/utility:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_relops.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ranges_algo.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ranges_algobase.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iterator:
@@ -471,7 +476,6 @@ chip8.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/glue_algorithm_defs.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/functional:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tuple:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/array:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/uses_allocator.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/refwrap.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/std_function.h:
@@ -488,28 +492,6 @@ chip8.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_bvector.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/vector.tcc:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/execution_defs.h:
-/usr/include/SFML/Graphics/Rect.inl:
-/usr/include/SFML/Graphics/View.hpp:
-/usr/include/SFML/Graphics/Transform.hpp:
-/usr/include/SFML/Graphics/BlendMode.hpp:
-/usr/include/SFML/Graphics/RenderStates.hpp:
-/usr/include/SFML/Graphics/PrimitiveType.hpp:
-/usr/include/SFML/Graphics/Vertex.hpp:
-/usr/include/SFML/System/NonCopyable.hpp:
-/usr/include/SFML/System/Export.hpp:
-/usr/include/SFML/Graphics/Image.hpp:
-/usr/include/SFML/Window/Window.hpp:
-/usr/include/SFML/Window/ContextSettings.hpp:
-/usr/include/SFML/Window/Cursor.hpp:
-/usr/include/SFML/Window/Export.hpp:
-/usr/include/SFML/Window/GlResource.hpp:
-/usr/include/SFML/Window/VideoMode.hpp:
-/usr/include/SFML/Window/WindowHandle.hpp:
-/usr/include/SFML/Window/WindowStyle.hpp:
-/usr/include/SFML/System/Clock.hpp:
-/usr/include/SFML/System/Time.hpp:
-/usr/include/SFML/System/String.hpp:
-/usr/include/SFML/System/Utf.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/locale:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/locale_facets_nonio.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ctime:
@@ -522,54 +504,63 @@ chip8.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/unique_ptr.h:
 /usr/include/SFML/System/Utf.inl:
 /usr/include/SFML/System/String.inl:
-/usr/include/SFML/Graphics.hpp:
-/usr/include/SFML/Window.hpp:
-/usr/include/SFML/System.hpp:
-/usr/include/SFML/System/Err.hpp:
-/usr/include/SFML/System/FileInputStream.hpp:
-/usr/include/SFML/System/InputStream.hpp:
-/usr/include/SFML/System/Lock.hpp:
-/usr/include/SFML/System/MemoryInputStream.hpp:
-/usr/include/SFML/System/Mutex.hpp:
-/usr/include/SFML/System/Sleep.hpp:
 /usr/include/SFML/System/Thread.hpp:
 /usr/include/SFML/System/Thread.inl:
 /usr/include/SFML/System/ThreadLocal.hpp:
 /usr/include/SFML/System/ThreadLocalPtr.hpp:
 /usr/include/SFML/System/ThreadLocalPtr.inl:
+/usr/include/SFML/System/Vector2.hpp:
+/usr/include/SFML/System/Vector2.inl:
 /usr/include/SFML/System/Vector3.hpp:
 /usr/include/SFML/System/Vector3.inl:
 /usr/include/SFML/Window/Clipboard.hpp:
+/usr/include/SFML/Window/Export.hpp:
 /usr/include/SFML/Window/Context.hpp:
+/usr/include/SFML/Window/GlResource.hpp:
+/usr/include/SFML/Window/ContextSettings.hpp:
+/usr/include/SFML/Window/Cursor.hpp:
 /usr/include/SFML/Window/Event.hpp:
 /usr/include/SFML/Window/Joystick.hpp:
 /usr/include/SFML/Window/Keyboard.hpp:
 /usr/include/SFML/Window/Mouse.hpp:
 /usr/include/SFML/Window/Sensor.hpp:
 /usr/include/SFML/Window/Touch.hpp:
+/usr/include/SFML/Window/VideoMode.hpp:
+/usr/include/SFML/Window/Window.hpp:
+/usr/include/SFML/Window/WindowHandle.hpp:
+/usr/include/SFML/Window/WindowStyle.hpp:
+/usr/include/SFML/Graphics/BlendMode.hpp:
+/usr/include/SFML/Graphics/Export.hpp:
 /usr/include/SFML/Graphics/CircleShape.hpp:
 /usr/include/SFML/Graphics/Shape.hpp:
 /usr/include/SFML/Graphics/Drawable.hpp:
+/usr/include/SFML/Graphics/RenderStates.hpp:
+/usr/include/SFML/Graphics/Transform.hpp:
+/usr/include/SFML/Graphics/Rect.hpp:
+/usr/include/SFML/Graphics/Rect.inl:
 /usr/include/SFML/Graphics/Transformable.hpp:
 /usr/include/SFML/Graphics/VertexArray.hpp:
+/usr/include/SFML/Graphics/Vertex.hpp:
+/usr/include/SFML/Graphics/Color.hpp:
+/usr/include/SFML/Graphics/PrimitiveType.hpp:
 /usr/include/SFML/Graphics/ConvexShape.hpp:
 /usr/include/SFML/Graphics/Font.hpp:
 /usr/include/SFML/Graphics/Glyph.hpp:
 /usr/include/SFML/Graphics/Texture.hpp:
+/usr/include/SFML/Graphics/Image.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/map:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_tree.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_map.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_multimap.h:
 /usr/include/SFML/Graphics/RectangleShape.hpp:
+/usr/include/SFML/Graphics/RenderTarget.hpp:
+/usr/include/SFML/Graphics/View.hpp:
 /usr/include/SFML/Graphics/RenderTexture.hpp:
+/usr/include/SFML/Graphics/RenderWindow.hpp:
 /usr/include/SFML/Graphics/Shader.hpp:
 /usr/include/SFML/Graphics/Glsl.hpp:
 /usr/include/SFML/Graphics/Glsl.inl:
 /usr/include/SFML/Graphics/Sprite.hpp:
 /usr/include/SFML/Graphics/Text.hpp:
 /usr/include/SFML/Graphics/VertexBuffer.hpp:
-memory.hpp:
 utils.hpp:
-registermap.hpp:
-stack.hpp:
-display.hpp:
