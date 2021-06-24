@@ -1,4 +1,5 @@
 #include "display.hpp"
+
 #include <SFML/System/Vector2.hpp>
 
 // Graphics
@@ -11,4 +12,9 @@ Display::Display()
 
   m_window.clear(sf::Color::Black);
   m_window.display();
-}    
+}
+
+void Display::print()
+{
+  //
+}

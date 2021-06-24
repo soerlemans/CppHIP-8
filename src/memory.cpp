@@ -1,6 +1,11 @@
 #include "memory.hpp"
 
 #include <algorithm>
+#include <cstdio>
+#include <ios>
+#include <fstream>
+#include <string>
+#include <stdexcept>
 
 // Memory:
 enum MemoryAdress : u16 {
@@ -10,7 +15,7 @@ enum MemoryAdress : u16 {
   StartMemory = 0x200
 };
 
-Memory::Memory()
+Memory::Memory(const std::string& t_path)
   :m_memory{ // fontset
 	  { 0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
 		0x20, 0x60, 0x20, 0x20, 0x70, // 1
@@ -31,6 +36,12 @@ Memory::Memory()
 	  } },
    m_opcode{0}, m_pc{0}, m_index_register{0}
 {
+  std::ifstream ifs{t_path, std::ios::binary};
+  for(int index{StartMemory}; !ifs.eof(); index++)
+	{
+	  ifs.read((char *)&(m_memory[index]), sizeof(char));
+	  std::cout << "Garbage: " << m_memory[index] << std::endl;
+	}
   std::fill(m_memory.begin() + 5 * 16, m_memory.end(), 0);
 }
 
@@ -47,8 +58,26 @@ u16 Memory::get_opcode() const
   return m_opcode;
 }
 
+
+u8& Memory::operator[](const size_t t_index)
+{
+  return m_memory[t_index];
+}
+
 Memory& Memory::operator++()
 {
+  if(m_pc + 2 > m_memory.size())
+	{
+	  std::string error{"Out of bounds access(upper): ["};
+	  error += m_pc;
+	  error += "] size: ";
+	  error += m_memory.size();
+
+	  std::cout << error << std::endl;
+	  
+	  throw std::out_of_range{error};
+	}
+
   m_opcode = m_memory[m_pc] << 8 | m_memory[m_pc + 1];
   m_pc += 2;
 
@@ -65,6 +94,17 @@ Memory Memory::operator++(int)
 
 Memory& Memory::operator--()
 {
+  if(m_pc <= 2)
+	{
+	  std::string error{"Out of bounds access(lower): ["};
+	  error += m_pc;
+	  error += "] size: ";
+	  error += m_memory.size();
+
+	  throw std::out_of_range{error};
+	}
+
+
   m_opcode = m_memory[m_pc] << 8 | m_memory[m_pc + 1];
   m_pc -= 2;
 

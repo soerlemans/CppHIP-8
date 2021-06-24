@@ -22,5 +22,7 @@ private:
 	
 public:
   Display();
+
+  void print();
 };
 

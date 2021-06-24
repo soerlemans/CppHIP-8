@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <exception>
 
 #include "utils.hpp"
 
@@ -18,10 +19,12 @@ private:
   u16 m_index_register;
 
 public:
-  Memory();
+  Memory(const std::string& t_path = "../roms/INVADERS");
   Memory(const Memory& t_rhs);
 
   u16 get_opcode() const;
+
+  u8& operator[](const size_t t_index);
 
   Memory& operator++();
   Memory operator++(int);

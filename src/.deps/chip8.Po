@@ -251,6 +251,9 @@ chip8.o: chip8.cpp /usr/include/stdc-predef.h chip8.hpp \
  /usr/include/SFML/Graphics/Sprite.hpp \
  /usr/include/SFML/Graphics/Text.hpp \
  /usr/include/SFML/Graphics/VertexBuffer.hpp memory.hpp utils.hpp \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iostream \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/istream \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/istream.tcc \
  registermap.hpp stack.hpp display.hpp
 /usr/include/stdc-predef.h:
 chip8.hpp:
@@ -563,6 +566,9 @@ chip8.hpp:
 /usr/include/SFML/Graphics/VertexBuffer.hpp:
 memory.hpp:
 utils.hpp:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iostream:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/istream:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/istream.tcc:
 registermap.hpp:
 stack.hpp:
 display.hpp:

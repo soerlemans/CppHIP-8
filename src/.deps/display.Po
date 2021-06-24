@@ -253,7 +253,10 @@ display.o: display.cpp /usr/include/stdc-predef.h display.hpp \
  /usr/include/SFML/Graphics/Glsl.hpp /usr/include/SFML/Graphics/Glsl.inl \
  /usr/include/SFML/Graphics/Sprite.hpp \
  /usr/include/SFML/Graphics/Text.hpp \
- /usr/include/SFML/Graphics/VertexBuffer.hpp utils.hpp
+ /usr/include/SFML/Graphics/VertexBuffer.hpp utils.hpp \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iostream \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/istream \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/istream.tcc
 /usr/include/stdc-predef.h:
 display.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/array:
@@ -564,3 +567,6 @@ display.hpp:
 /usr/include/SFML/Graphics/Text.hpp:
 /usr/include/SFML/Graphics/VertexBuffer.hpp:
 utils.hpp:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/iostream:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/istream:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/istream.tcc:
