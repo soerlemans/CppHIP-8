@@ -14,9 +14,4 @@ namespace chip8
 {
   extern u8 m_delay_timer;
   extern u8 m_sound_timer;
-
-  extern Memory g_memory;
-  extern RegisterMap g_register_map;
-  extern Stack g_stack;
-  extern Display g_display;
 }

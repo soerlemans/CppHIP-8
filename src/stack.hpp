@@ -4,6 +4,8 @@
 
 #include "utils.hpp"
 
+namespace chip8
+{
 class Stack {
 private:
   std::array<u8, 16> m_stack;
@@ -17,3 +19,4 @@ public:
 
 };
 
+}

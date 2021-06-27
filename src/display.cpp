@@ -2,6 +2,8 @@
 
 #include <SFML/System/Vector2.hpp>
 
+using namespace chip8;
+
 // Graphics
 Display::Display()
   :m_window{sf::VideoMode(640, 320), "CppHIP-8"}
@@ -14,7 +16,12 @@ Display::Display()
   m_window.display();
 }
 
-void Display::print()
+void Display::clear()
+{
+  m_window.clear();
+}
+
+void Display::print() const
 {
   //
 }

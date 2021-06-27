@@ -1,5 +1,7 @@
 #include "stack.hpp"
 
+using namespace chip8;
+
 // Stack
 Stack::Stack()
 {

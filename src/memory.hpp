@@ -5,31 +5,75 @@
 
 #include "utils.hpp"
 
-enum Opcode : u16 {
-  CLS = 0x0000,
-  RET = 0x00EE,
-  JMP = 0x1000
-};
+namespace chip8
+{
+  enum Opcode : u16 {
+	SYS  = 0x0000,
+	CLS  = 0x00E0,
+	RET  = 0x00EE,
 
-class Memory {
-private:
-  std::array<u8, 4096> m_memory;
-  u16 m_opcode;
-  u16 m_pc;
-  u16 m_index_register;
+	JMP  = 0x1000,
+	CALL = 0x2000,
+	SE   = 0x3000,
+	SNE  = 0x4000,
+	SE_R = 0x5000,
+	LD   = 0x6000,
+	ADD  = 0x7000,
 
-public:
-  Memory(const std::string& t_path = "../roms/INVADERS");
-  Memory(const Memory& t_rhs);
+	// Register operations:
+	LD_R  = 0x8000,
+	OR_R  = 0x8001,
+	AND_R = 0x8002,
+	XOR_R = 0x8003,
+	ADD_R = 0x8004,
+	SUB_R = 0x8005,
+	SHR_R = 0x8006,
+	SUBN_R = 0x8007,
+	SHL_R = 0x800E,
 
-  u16 get_opcode() const;
+	SNE_R = 0x9000,
+	LD_I = 0xA000,
+	JMP_V0 = 0xB000,
+	RND = 0xC000,
+	DRW = 0xD000,
 
-  u8& operator[](const size_t t_index);
+	SKP = 0xE09E,
+	SKNP = 0xE0A1,
 
-  Memory& operator++();
-  Memory operator++(int);
+	LD_TR = 0xF007,
+	LD_KR = 0xF00A,
 
-  Memory& operator--();
-  Memory operator--(int);
-};
+	LD_DT = 0xF015,
+	LD_ST = 0xF018,
 
+	ADD_I = 0xF01E,
+	LD_F = 0xF029,
+	LD_B = 0xF033,
+
+	LD_at = 0xF055,
+	LD_at2 = 0xF065
+  };
+
+  class Memory {
+  private:
+	std::array<u8, 4096> m_memory;
+	u16 m_opcode;
+	u16 m_pc;
+	u16 m_index_register;
+
+  public:
+	Memory(const std::string& t_path);
+	Memory(const Memory& t_rhs);
+
+	void jump(const u16 t_pc);
+	u16 get_opcode() const;
+
+	u8& operator[](const size_t t_index);
+
+	Memory& operator++();
+	Memory operator++(int);
+
+	Memory& operator--();
+	Memory operator--(int);
+  };
+}

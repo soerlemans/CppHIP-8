@@ -6,6 +6,8 @@
 
 #include "utils.hpp"
 
+namespace chip8
+{
 enum Color : u8 {
   Black = 0,
   // Change this to one if switching to bit display
@@ -23,6 +25,8 @@ private:
 public:
   Display();
 
-  void print();
+  void clear();
+  void print() const;
 };
 
+}

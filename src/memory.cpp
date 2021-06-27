@@ -7,6 +7,8 @@
 #include <string>
 #include <stdexcept>
 
+using namespace chip8;
+
 // Memory:
 enum MemoryAdress : u16 {
   // Fontset 0x000 - 0x080
@@ -36,13 +38,16 @@ Memory::Memory(const std::string& t_path)
 	  } },
    m_opcode{0}, m_pc{0}, m_index_register{0}
 {
+  std::fill(m_memory.begin() + 5 * 16, m_memory.end(), 0);
+
   std::ifstream ifs{t_path, std::ios::binary};
   for(int index{StartMemory}; !ifs.eof(); index++)
 	{
 	  ifs.read((char *)&(m_memory[index]), sizeof(char));
 	  std::cout << "Garbage: " << m_memory[index] << std::endl;
 	}
-  std::fill(m_memory.begin() + 5 * 16, m_memory.end(), 0);
+
+  (*this)++;
 }
 
 Memory::Memory(const Memory& t_rhs)
@@ -51,6 +56,12 @@ Memory::Memory(const Memory& t_rhs)
    m_pc{t_rhs.m_pc},
    m_index_register{t_rhs.m_index_register}
 {
+}
+
+void Memory::jump(const u16 t_pc)
+{
+  m_pc = t_pc;
+  m_opcode = m_memory[m_pc] << 8 | m_memory[m_pc + 1];
 }
 
 u16 Memory::get_opcode() const
