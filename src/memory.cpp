@@ -17,6 +17,13 @@ enum MemoryAdress : u16 {
   StartMemory = 0x200
 };
 
+// Private:
+void Memory::load_opcode()
+{
+  m_opcode = m_memory[m_pc] << 8 | m_memory[m_pc + 1];
+}
+
+// Public:
 Memory::Memory(const std::string& t_path)
   :m_memory{ // fontset
 	  { 0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
@@ -38,30 +45,32 @@ Memory::Memory(const std::string& t_path)
 	  } },
    m_opcode{0}, m_pc{0}, m_index_register{0}
 {
+  // Fill with zeros but skip the fontset at the beginning
   std::fill(m_memory.begin() + 5 * 16, m_memory.end(), 0);
 
   std::ifstream ifs{t_path, std::ios::binary};
   for(int index{StartMemory}; !ifs.eof(); index++)
-	{
-	  ifs.read((char *)&(m_memory[index]), sizeof(char));
-	  std::cout << "Garbage: " << m_memory[index] << std::endl;
-	}
+	ifs.read((char *)&(m_memory[index]), sizeof(char));
 
-  (*this)++;
+  load_opcode();
 }
 
-Memory::Memory(const Memory& t_rhs)
-  :m_memory{t_rhs.m_memory},
-   m_opcode{t_rhs.m_opcode},
-   m_pc{t_rhs.m_pc},
-   m_index_register{t_rhs.m_index_register}
+Memory::Memory(const Memory &t_rhs)
+    : m_memory{t_rhs.m_memory}, m_opcode{t_rhs.m_opcode}, m_pc{t_rhs.m_pc},
+      m_index_register{t_rhs.m_index_register}
 {
+}
+
+void Memory::start()
+{
+  m_pc = MemoryAdress::StartMemory;
+  load_opcode();
 }
 
 void Memory::jump(const u16 t_pc)
 {
   m_pc = t_pc;
-  m_opcode = m_memory[m_pc] << 8 | m_memory[m_pc + 1];
+  load_opcode();
 }
 
 u16 Memory::get_opcode() const
@@ -69,6 +78,22 @@ u16 Memory::get_opcode() const
   return m_opcode;
 }
 
+void Memory::set_index_register(const u16 t_index_register)
+{
+  m_index_register = t_index_register;
+}
+
+u16 Memory::get_index_register() const
+{
+  return m_index_register;
+}
+
+template<typename T>
+void Memory::copy_nth(T t_iter, const u16 t_addr, const u8 t_nth) const
+{
+  const auto start{m_memory.cbegin() + t_addr};
+  std::copy(start, start + t_nth, t_iter);
+}
 
 u8& Memory::operator[](const size_t t_index)
 {
@@ -89,8 +114,8 @@ Memory& Memory::operator++()
 	  throw std::out_of_range{error};
 	}
 
-  m_opcode = m_memory[m_pc] << 8 | m_memory[m_pc + 1];
   m_pc += 2;
+  load_opcode();
 
   return *this;
 }
@@ -115,9 +140,8 @@ Memory& Memory::operator--()
 	  throw std::out_of_range{error};
 	}
 
-
-  m_opcode = m_memory[m_pc] << 8 | m_memory[m_pc + 1];
   m_pc -= 2;
+  load_opcode();
 
   return *this;
 }

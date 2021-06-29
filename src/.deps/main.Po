@@ -157,6 +157,42 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ostream.tcc \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/istream \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/istream.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/random \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/cmath \
+ /usr/include/math.h /usr/include/bits/math-vector.h \
+ /usr/include/bits/libm-simd-decl-stubs.h \
+ /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
+ /usr/include/bits/fp-fast.h \
+ /usr/include/bits/mathcalls-helper-functions.h \
+ /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
+ /usr/include/bits/iscanonical.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/specfun.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/limits \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/gamma.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/special_function_util.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/bessel_function.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/beta_function.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/ell_integral.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/exp_integral.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/hypergeometric.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/legendre_function.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/modified_bessel_func.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/poly_hermite.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/poly_laguerre.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/riemann_zeta.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/random.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/vector \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_uninitialized.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_vector.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_bvector.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/vector.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/opt_random.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/random.tcc \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/numeric \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_numeric.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bit \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/glue_numeric_defs.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/execution_defs.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/sstream \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/sstream.tcc \
  chip8.hpp /usr/include/SFML/Graphics/RenderWindow.hpp \
@@ -188,12 +224,6 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/node_handle.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/unordered_map.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/erase_if.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/vector \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_uninitialized.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_vector.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_bvector.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/vector.tcc \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/execution_defs.h \
  /usr/include/SFML/Graphics/Rect.inl /usr/include/SFML/Graphics/View.hpp \
  /usr/include/SFML/Graphics/Transform.hpp \
  /usr/include/SFML/Graphics/BlendMode.hpp \
@@ -457,6 +487,45 @@ main.o: main.cpp /usr/include/stdc-predef.h \
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/ostream.tcc:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/istream:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/istream.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/random:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/cmath:
+/usr/include/math.h:
+/usr/include/bits/math-vector.h:
+/usr/include/bits/libm-simd-decl-stubs.h:
+/usr/include/bits/flt-eval-method.h:
+/usr/include/bits/fp-logb.h:
+/usr/include/bits/fp-fast.h:
+/usr/include/bits/mathcalls-helper-functions.h:
+/usr/include/bits/mathcalls.h:
+/usr/include/bits/mathcalls-narrow.h:
+/usr/include/bits/iscanonical.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/specfun.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/limits:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/gamma.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/special_function_util.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/bessel_function.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/beta_function.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/ell_integral.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/exp_integral.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/hypergeometric.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/legendre_function.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/modified_bessel_func.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/poly_hermite.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/poly_laguerre.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/tr1/riemann_zeta.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/random.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/vector:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_uninitialized.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_vector.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_bvector.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/vector.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/opt_random.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/random.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/numeric:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_numeric.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bit:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/glue_numeric_defs.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/execution_defs.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/sstream:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/sstream.tcc:
 chip8.hpp:
@@ -490,12 +559,6 @@ chip8.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/node_handle.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/unordered_map.h:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/erase_if.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/vector:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_uninitialized.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_vector.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/stl_bvector.h:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/vector.tcc:
-/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/pstl/execution_defs.h:
 /usr/include/SFML/Graphics/Rect.inl:
 /usr/include/SFML/Graphics/View.hpp:
 /usr/include/SFML/Graphics/Transform.hpp:

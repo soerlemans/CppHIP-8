@@ -16,17 +16,25 @@ enum Color : u8 {
 
 class Display {
 private:
+  // Can define and declare static member on same line?
+  // Is this cause C++20? Cause this rocks
+  static constexpr u8 m_width{64};
+
   // TOOD: Maybe make the size 8 * 4 and just set the bits
   // Since the display is only black and white
-  std::array<u8, 64 * 32> m_display;
+  std::array<u8, m_width * 32> m_display;
   
   sf::RenderWindow m_window;
 	
 public:
   Display();
-
+  
   void clear();
-  void print() const;
+
+  template<typename Begin, typename End>
+  void write(const u8 t_x, const u8 t_y, Begin t_begin, End t_end);
+
+  void print();
 };
 
 }

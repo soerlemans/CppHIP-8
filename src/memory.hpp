@@ -61,14 +61,24 @@ namespace chip8
 	u16 m_pc;
 	u16 m_index_register;
 
+	void load_opcode();
+
   public:
 	Memory(const std::string& t_path);
 	Memory(const Memory& t_rhs);
 
-	void jump(const u16 t_pc);
-	u16 get_opcode() const;
+	void start();
 
-	u8& operator[](const size_t t_index);
+	void jump(const u16 t_pc);
+	[[nodiscard]] u16 get_opcode() const;
+
+	void set_index_register(const u16 t_index_register);
+	[[nodiscard]] u16 get_index_register() const;
+
+	template<typename T>
+	void copy_nth(T t_iter, const u16 t_addr, const u8 t_nth) const;
+
+	[[nodiscard]] u8& operator[](const size_t t_index);
 
 	Memory& operator++();
 	Memory operator++(int);
