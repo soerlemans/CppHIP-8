@@ -9,8 +9,8 @@
 namespace chip8
 {
   // Variable initialization
-  u8 m_delay_timer{0};
-  u8 m_sound_timer{0};
+  u8 g_delay_timer{0};
+  u8 g_sound_timer{0};
 
 
   u16 get_keys()

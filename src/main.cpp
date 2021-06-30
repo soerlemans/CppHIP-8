@@ -18,7 +18,7 @@ void register_operations(const u16 t_opcode, chip8::RegisterMap& t_rm)
   const u8 x{(u8)((t_opcode & 0x0F00) >> 8)};
   const u8 y{(u8)((t_opcode & 0x00F0) >> 4)};
 
-  std::cout << "Register operation: " << t_opcode << '\n';
+  std::cout << "Register operation: " << ((t_opcode & 0xF000) >> 12) << " Rx: " << (u16)t_rm[x] << " Ry: " << (u16)t_rm[y] << '\n'; 
   
   switch(t_opcode)
 	{
@@ -65,6 +65,8 @@ void cycle(const u16 t_keys, chip8::Memory& t_memory, chip8::RegisterMap& t_rm, 
   const u8 y{(u8)((opcode & 0x00F0) >> 4)};
   const u8 byte{(u8)(opcode & 0x00FF)};
 
+  std::cout << t_memory.get_pc() << ": ";
+
   // TODO: Cut the function down and spread the functionalities
   switch(opcode & 0xF000)
 	{
@@ -98,7 +100,7 @@ void cycle(const u16 t_keys, chip8::Memory& t_memory, chip8::RegisterMap& t_rm, 
 	  break;
 
 	case Opcode::SE:
-	  std::cout << "SE: " << byte << "\n";
+	  std::cout << "SE: " << (u16)(t_rm[x]) << " == " << (u16)byte << "\n";
 	  if(t_rm[x] == byte)
 		t_memory++;
 	  break;
@@ -116,12 +118,12 @@ void cycle(const u16 t_keys, chip8::Memory& t_memory, chip8::RegisterMap& t_rm, 
 	  break;
 
 	case Opcode::LD: 
+	  std::cout << "LD X: " << (int)x << " R: " << (int)t_rm[x] << " byte: " << (int)byte << std::endl;
 	  t_rm[x] = byte;
-	  std::cout << "LD: " << (int)x << ", " << (int)t_rm[x] << " byte: " << (int)byte << std::endl;
 	  break;
 
 	case Opcode::ADD:
-	  std::cout << "ADD" << "\n";
+	  std::cout << "ADD" << (u16)t_rm[x] << " += " << (u16)byte << "\n";
 	  t_rm[x] += byte;
 	  break;
 
@@ -136,7 +138,7 @@ void cycle(const u16 t_keys, chip8::Memory& t_memory, chip8::RegisterMap& t_rm, 
 	  break;
 
 	case Opcode::LD_I:
-	  std::cout << "LD_I" << "\n";
+	  std::cout << "LD_I " << (opcode &0x0FFF) << "\n";
 	  t_memory.set_ir(opcode & 0x0FFF);
 	  break;
 
@@ -159,7 +161,7 @@ void cycle(const u16 t_keys, chip8::Memory& t_memory, chip8::RegisterMap& t_rm, 
 	case Opcode::DRW: {
 	  const u8 sprite_len{(u8)(opcode & 0x000F)};
 
-	  std::cout << "x: " << x << " y: " << y << " DRW: " << sprite_len << std::endl;
+	  std::cout << "x: " << (u16)x << " y: " << (u16)y << " DRW: " << (u16)sprite_len << std::endl;
 
 	  std::vector<u8> sprite{sprite_len};
 	  t_memory.copy_nth(sprite.begin(), t_rm[x], sprite_len);
@@ -189,19 +191,39 @@ void cycle(const u16 t_keys, chip8::Memory& t_memory, chip8::RegisterMap& t_rm, 
 	  switch(opcode)
 		{
 		case Opcode::LD_DT_R:
+		  t_rm[x] = g_delay_timer;
 		  break;
 
-		case Opcode::LD_K_R:
+		case Opcode::LD_K_R: {
+		  int keys{0};
+		  while(!(keys = get_keys()))
+			sf::sleep(sf::milliseconds(1));
+
+		  for(int index{0}; index < 16; index++)
+			  if(keys & (1 << index))
+				{
+				  t_rm[x] = index;
+				  break;
+				}
 		  break;
+		}
 
 		case Opcode::LD_R_DT:
+		  g_delay_timer = t_rm[x];
 		  break;
 
 		case Opcode::LD_R_ST:
+		  g_sound_timer = t_rm[x];
 		  break;
 
 		case Opcode::ADD_I:
 		  t_memory.set_ir(t_rm[x]);
+		  break;
+
+		case Opcode::LD_F:
+		  break;
+
+		case Opcode::LD_B:
 		  break;
 
 		case Opcode::LD_R_M:
@@ -221,7 +243,7 @@ void cycle(const u16 t_keys, chip8::Memory& t_memory, chip8::RegisterMap& t_rm, 
 int main(int argc, char *argv[])
 {
   // Define variables
-  chip8::Memory memory{"../roms/INVADERS"};
+  chip8::Memory memory{"../roms/PONG"};
   memory.start();
   
   chip8::RegisterMap rm;
@@ -237,6 +259,12 @@ int main(int argc, char *argv[])
 		memory++;
 
 		display.print();
+
+		if(chip8::g_delay_timer)
+		  chip8::g_delay_timer--;
+
+		if(chip8::g_sound_timer)
+		  chip8::g_sound_timer--;
 
 		// Delay to not run on full cpu
 		sf::sleep(sf::milliseconds(1));

@@ -70,6 +70,7 @@ namespace chip8
 	void start();
 
 	void jump(const u16 t_pc);
+	[[nodiscard]] u16 get_pc() const;
 	[[nodiscard]] u16 get_opcode() const;
 
 	void set_ir(const u16 t_ir);

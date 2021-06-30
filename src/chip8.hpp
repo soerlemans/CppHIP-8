@@ -12,8 +12,8 @@
 // Namespace for the globals
 namespace chip8
 {
-  extern u8 m_delay_timer;
-  extern u8 m_sound_timer;
+  extern u8 g_delay_timer;
+  extern u8 g_sound_timer;
 
   enum Key : u16
 	{

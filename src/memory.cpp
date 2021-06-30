@@ -73,6 +73,10 @@ void Memory::jump(const u16 t_pc)
   load_opcode();
 }
 
+[[nodiscard]] u16 Memory::get_pc() const
+{
+  return m_pc;
+}
 u16 Memory::get_opcode() const
 {
   return m_opcode;
