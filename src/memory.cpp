@@ -78,21 +78,19 @@ u16 Memory::get_opcode() const
   return m_opcode;
 }
 
-void Memory::set_index_register(const u16 t_index_register)
+void Memory::set_ir(const u16 t_ir)
 {
-  m_index_register = t_index_register;
+  m_index_register = t_ir;
 }
 
-u16 Memory::get_index_register() const
+void Memory::inc_ir(const u16 t_inc)
+{
+  m_index_register += t_inc;
+}
+
+u16 Memory::get_ir() const
 {
   return m_index_register;
-}
-
-template<typename T>
-void Memory::copy_nth(T t_iter, const u16 t_addr, const u8 t_nth) const
-{
-  const auto start{m_memory.cbegin() + t_addr};
-  std::copy(start, start + t_nth, t_iter);
 }
 
 u8& Memory::operator[](const size_t t_index)

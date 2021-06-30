@@ -8,9 +8,9 @@
 namespace chip8
 {
   enum Opcode : u16 {
-	SYS  = 0x0000,
-	CLS  = 0x00E0,
-	RET  = 0x00EE,
+	SYS = 0x0000,
+	CLS = 0x00E0,
+	RET = 0x00EE,
 
 	JMP  = 0x1000,
 	CALL = 0x2000,
@@ -21,37 +21,37 @@ namespace chip8
 	ADD  = 0x7000,
 
 	// Register operations:
-	LD_R  = 0x8000,
-	OR_R  = 0x8001,
-	AND_R = 0x8002,
-	XOR_R = 0x8003,
-	ADD_R = 0x8004,
-	SUB_R = 0x8005,
-	SHR_R = 0x8006,
+	LD_R   = 0x8000,
+	OR_R   = 0x8001,
+	AND_R  = 0x8002,
+	XOR_R  = 0x8003,
+	ADD_R  = 0x8004,
+	SUB_R  = 0x8005,
+	SHR_R  = 0x8006,
 	SUBN_R = 0x8007,
-	SHL_R = 0x800E,
+	SHL_R  = 0x800E,
 
-	SNE_R = 0x9000,
-	LD_I = 0xA000,
+	SNE_R  = 0x9000,
+	LD_I   = 0xA000,
 	JMP_V0 = 0xB000,
-	RND = 0xC000,
-	DRW = 0xD000,
+	RND    = 0xC000,
+	DRW    = 0xD000,
 
-	SKP = 0xE09E,
+	SKP  = 0xE09E,
 	SKNP = 0xE0A1,
 
-	LD_TR = 0xF007,
-	LD_KR = 0xF00A,
+	LD_DT_R = 0xF007,
+	LD_K_R = 0xF00A,
 
-	LD_DT = 0xF015,
-	LD_ST = 0xF018,
+	LD_R_DT = 0xF015,
+	LD_R_ST = 0xF018,
 
 	ADD_I = 0xF01E,
-	LD_F = 0xF029,
-	LD_B = 0xF033,
+	LD_F  = 0xF029,
+	LD_B  = 0xF033,
 
-	LD_at = 0xF055,
-	LD_at2 = 0xF065
+	LD_R_M = 0xF055,
+	LD_M_R = 0xF065
   };
 
   class Memory {
@@ -72,11 +72,16 @@ namespace chip8
 	void jump(const u16 t_pc);
 	[[nodiscard]] u16 get_opcode() const;
 
-	void set_index_register(const u16 t_index_register);
-	[[nodiscard]] u16 get_index_register() const;
+	void set_ir(const u16 t_ir);
+	void inc_ir(const u16 t_inc);
+	[[nodiscard]] u16 get_ir() const;
 
 	template<typename T>
-	void copy_nth(T t_iter, const u16 t_addr, const u8 t_nth) const;
+	void copy_nth(T t_iter, const u16 t_addr, const u8 t_nth) const
+	{
+	  const auto start{m_memory.cbegin() + t_addr};
+	  std::copy(start, start + t_nth, t_iter);
+	}
 
 	[[nodiscard]] u8& operator[](const size_t t_index);
 

@@ -1,5 +1,7 @@
 #include "display.hpp"
 
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/System/Vector2.hpp>
 
 using namespace chip8;
@@ -22,14 +24,18 @@ void Display::clear()
   m_window.clear();
 }
 
-template <typename Begin, typename End>
-void Display::write(const u8 t_x, const u8 t_y, Begin t_begin, End t_end)
-{
-  // TOOD: Something something start location
-  m_display[t_x + t_y * m_width];
-}
-
 void Display::print()
 {
+  for(int x{0}; x < m_width; x++)
+	for(int y{0}; y < m_height; y++)
+	  {
+		sf::RectangleShape rect{sf::Vector2f{10, 10}};
+		rect.setFillColor(sf::Color::White);
+		rect.move(x * 10, y * 10);
+
+		if(m_display[x + m_height * y])
+		  m_window.draw(rect);
+	  }
+
   m_window.display();
 }
