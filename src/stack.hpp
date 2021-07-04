@@ -8,15 +8,14 @@ namespace chip8
 {
 class Stack {
 private:
-  std::array<u8, 16> m_stack;
+  std::array<u16, 16> m_stack;
   u8 m_sp;
 	
 public:
   Stack();
 	
-  void push();
-  void pop();
-
+  void push(const u16 t_addr);
+  u16 pop();
 };
 
 }
