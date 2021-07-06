@@ -1,20 +1,9 @@
 #pragma once
 
-#include <SFML/Graphics/RenderWindow.hpp>
+#include "utils.hpp"
 
-#include <SFML/Graphics.hpp>
-
-#include "memory.hpp"
-#include "registermap.hpp"
-#include "stack.hpp"
-#include "display.hpp"
-
-// Namespace for the globals
 namespace chip8
-{
-  extern u8 g_delay_timer;
-  extern u8 g_sound_timer;
-
+{    
   enum Key : u16
 	{
 	  Num0 = 1,

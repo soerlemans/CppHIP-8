@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <ios>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <stdexcept>
 
@@ -106,14 +107,10 @@ Memory& Memory::operator++()
 {
   if(m_pc + 2 > m_memory.size())
 	{
-	  std::string error{"Out of bounds access(upper): ["};
-	  error += m_pc;
-	  error += "] size: ";
-	  error += m_memory.size();
-
-	  std::cout << error << std::endl;
+	  std::ostringstream ss;
+	  ss << "Out of bounds access(upper): [" << m_pc << "] size: " << m_memory.size() << '\n';
 	  
-	  throw std::out_of_range{error};
+	  throw std::out_of_range{ss.str()};
 	}
 
   m_pc += 2;
@@ -134,12 +131,10 @@ Memory& Memory::operator--()
 {
   if(m_pc <= 2)
 	{
-	  std::string error{"Out of bounds access(lower): ["};
-	  error += m_pc;
-	  error += "] size: ";
-	  error += m_memory.size();
-
-	  throw std::out_of_range{error};
+	  std::ostringstream ss;
+	  ss << "Out of bounds access(lower): [" << m_pc << "] size: " << m_memory.size() << '\n';
+	  
+	  throw std::out_of_range{ss.str()};
 	}
 
   m_pc -= 2;
