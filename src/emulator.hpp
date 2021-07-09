@@ -31,7 +31,6 @@ namespace chip8
   public:
 	Emulator(Memory* t_memory, RegisterMap* t_rm, Stack* t_stack, Display* t_display);
 
-	void next_instruction();
 	void register_operations();
 	void cycle();
   };

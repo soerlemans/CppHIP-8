@@ -60,6 +60,7 @@ Memory::Memory(const Memory &t_rhs)
     : m_memory{t_rhs.m_memory}, m_opcode{t_rhs.m_opcode}, m_pc{t_rhs.m_pc},
       m_index_register{t_rhs.m_index_register}
 {
+  load_opcode();
 }
 
 void Memory::start()

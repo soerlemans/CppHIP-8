@@ -2,6 +2,13 @@
 
 #include "utils.hpp"
 
+// Moves the key in the byte to the LSB, then check only for that key
+#define IS_PRESSED(keys, key)						\
+  ((keys >> (key - 1)) & 1)
+
+#define IS_NOT_PRESSED(keys, key)						\
+  !((keys >> (key - 1)) & 1)
+
 namespace chip8
 {    
   enum Key : u16
