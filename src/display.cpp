@@ -33,7 +33,7 @@ void Display::print()
 		rect.setFillColor(sf::Color::White);
 		rect.move(x * 10, y * 10);
 
-		if(m_display[x + m_height * y])
+		if(m_display[x + m_width* y])
 		  m_window.draw(rect);
 	  }
 

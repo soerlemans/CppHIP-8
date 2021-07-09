@@ -6,6 +6,7 @@
 #include "display.hpp"
 
 #include "keys.hpp"
+#include "utils.hpp"
 
 // Specifies an operation between two registers
 #define R_OP(x, y, OP)							\
@@ -33,8 +34,6 @@ namespace chip8
 	const u8 y{(u8)((opcode & 0x00F0) >> 4)};
 
 	auto& rm{*m_rm};
-	
-	std::cout << "Register operation: " << std::hex << opcode << std::dec << " Rx: " << (u16)rm[x] << " Ry: " << (u16)rm[y]; 
 	
 	switch(opcode)
 	  {
@@ -94,6 +93,8 @@ namespace chip8
 		rm[x] *= 2;
 		break;
 	  }
+
+	std::cout << ": " << std::hex << "x: " << (u16)x << " y: " << (u16)y << std::dec << " Rx: " << (u16)rm[x] << " Ry: " << (u16)rm[y];
   }
   
   void Emulator::cycle()
@@ -174,7 +175,7 @@ namespace chip8
 		break;
 		
 	  case Opcode::LD: 
-		std::cout << "LD X: " << (int)x << " R: " << (int)rm[x] << " byte: " << (int)byte ;
+		std::cout << "LD X: " << std::hex << (int)x << std::dec << " byte: " << (int)byte;
 		rm[x] = byte;
 		break;
 		
@@ -206,23 +207,26 @@ namespace chip8
 		break;
 		
 	  case Opcode::RND: {
-		std::cout << "RND: " << (u16)x;
+		std::cout << "RND: ";
 		const u8 bm{(u8)(opcode & 0x00FF)};
 		const u8 rb{(u8)(m_gen32() & 0x00FF)};
 		
-		std::cout << " = " << (rb & bm) << " bm: " << (u16)bm << " rb: " << (u16)rb;
+		std::cout << std::hex << (u16)x << std::dec << " = " << (rb & bm); 
 		rm[x] = rb & bm;
 		break;
 	  }
 		
 	  case Opcode::DRW: {
 		const u8 sprite_len{(u8)(opcode & 0x000F)};
-		std::cout << "x: " << (u16)x << " y: " << (u16)y << " DRW: " << (u16)sprite_len ;
-		
+		std::cout << "DRW: " << " I: " << memory.get_ir() << " x: " << (u16)rm[x] << " y: " << (u16)rm[y] << " n: " << (u16)sprite_len;
+
 		std::vector<u8> sprite{sprite_len};
-		memory.copy_nth(sprite.begin(), rm[x], sprite_len);
+		sprite.resize(sprite_len);
+
+		memory.copy_nth(memory.get_ir(), sprite_len, sprite.begin());
+		std::cout << "\n" << sprite.size();
 		
-		display.write(x, y, sprite.cbegin(), sprite.cend());
+		display.draw_sprite(rm[x], rm[y], sprite.cbegin(), sprite.cend());
 		break;
 	  }
 		
@@ -276,8 +280,8 @@ namespace chip8
 			break;
 			
 		  case Opcode::ADD_I:
-			std::cout << "ADD_I";
-			memory.set_ir(rm[x]);
+			std::cout << "ADD_I: " << memory.get_ir() << " += " << (u16)rm[x]; 
+			memory.inc_ir(rm[x]);
 			break;
 			
 		  case Opcode::LD_F:

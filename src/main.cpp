@@ -18,7 +18,10 @@
 int main(int argc, char *argv[])
 {
   // Define variables
-  chip8::Memory memory{"../roms/INVADERS"};
+  //chip8::Memory memory{"../roms/INVADERS"};
+  // chip8::Memory memory{"../roms/MAZE"};
+  // chip8::Memory memory{"../roms/PONG"};
+  chip8::Memory memory{"../roms/PUZZLE"};
   memory.start();
   
   chip8::RegisterMap rm;

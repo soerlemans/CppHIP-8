@@ -78,7 +78,7 @@ namespace chip8
 	[[nodiscard]] u16 get_ir() const;
 
 	template<typename T>
-	void copy_nth(T t_iter, const u16 t_addr, const u8 t_nth) const
+	void copy_nth(const u16 t_addr, const u8 t_nth, T t_iter) const
 	{
 	  const auto start{m_memory.cbegin() + t_addr};
 	  std::copy(start, start + t_nth, t_iter);

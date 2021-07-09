@@ -33,18 +33,30 @@ public:
   void clear();
 
   template <typename Begin, typename End>
-  bool write(const u8 t_x, const u8 t_y, Begin t_begin, End t_end)
+  bool draw_sprite(const u8 t_x, const u8 t_y, Begin t_begin, End t_end)
   {
 	bool erased{false};
 	const int start{t_x + t_y * m_width};
-	for(int index{0}; t_begin < t_end; t_begin++, index++)
+
+	std::cout << "\n[";
+	for(int index_x{0}, index_y{0}; t_begin < t_end; t_begin++)
 	  {
-		u8& pixel{m_display[start + index]};
-		if(pixel && * t_begin)
+		std::cout << (u16)(*t_begin) << ", ";
+		// Sprites are 8 pixels wide
+		u8& pixel{m_display[start + index_x + index_y * m_width]};
+		if(pixel && *t_begin)
 		  erased = true;
 		
 		pixel ^= *t_begin;
+
+		if(index_x >= 7)
+		  {
+			index_x = 0;
+			index_y++;
+		  }
+		else index_x++;
 	  }
+	std::cout << ']';
 
 	return erased;
   }
