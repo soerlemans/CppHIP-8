@@ -35,7 +35,7 @@ namespace chip8
 
 	auto& rm{*m_rm};
 	
-	switch(opcode)
+	switch(opcode & 0xF00F)
 	  {
 	  case Opcode::LD_R:
 		std::cout << "LD";
@@ -118,7 +118,7 @@ namespace chip8
 	switch(opcode & 0xF000)
 	  {
 	  case 0x0000:
-		switch (opcode)
+		switch(opcode & 0x00FF)
 		  {
 		  case Opcode::CLS:
 			std::cout << "CLS";
@@ -163,19 +163,19 @@ namespace chip8
 		break;
 		
 	  case Opcode::SNE:
-		std::cout << "SNE";
+		std::cout << "SNE: " << (u16)rm[x] << " != " << (u16)byte;
 		if(rm[x] != byte)
 		  memory++;
 		break;
 		
 	  case Opcode::SE_R:
-		std::cout << "SNE_R";
+		std::cout << "SE_R: " << (u16)rm[x] << " == " << (u16)rm[y];
 		if(rm[x] == rm[y])
 		  memory++;
 		break;
 		
 	  case Opcode::LD: 
-		std::cout << "LD X: " << std::hex << (int)x << std::dec << " byte: " << (int)byte;
+		std::cout << "LD: x: " << std::hex << (int)x << std::dec << " byte: " << (int)byte;
 		rm[x] = byte;
 		break;
 		
@@ -189,18 +189,18 @@ namespace chip8
 		break;
 		
 	  case Opcode::SNE_R:
-		std::cout << "SNE_R";
+		std::cout << "SNE_R: " << (u16)rm[x] << " != " << (u16)rm[y];
 		if(rm[x] != rm[y])
 		  memory++;
 		break;
 		
 	  case Opcode::LD_I:
-		std::cout << "LD_I " << (opcode &0x0FFF);
+		std::cout << "LD_I: " << (opcode &0x0FFF);
 		memory.set_ir(opcode & 0x0FFF);
 		break;
 		
 	  case Opcode::JMP_V0:
-		std::cout << "JMP_V0";
+		std::cout << "JMP_V0: " << (rm[RegisterName::V0] + (opcode & 0x0FFF));
 		memory.jump(rm[RegisterName::V0] + (opcode & 0x0FFF));
 
 		m_jumped = true;
@@ -222,9 +222,7 @@ namespace chip8
 
 		std::vector<u8> sprite{sprite_len};
 		sprite.resize(sprite_len);
-
 		memory.copy_nth(memory.get_ir(), sprite_len, sprite.begin());
-		std::cout << "\n" << sprite.size();
 		
 		display.draw_sprite(rm[x], rm[y], sprite.cbegin(), sprite.cend());
 		break;
@@ -234,13 +232,13 @@ namespace chip8
 		switch (opcode & 0xF0FF)
 		  {
 		  case Opcode::SKP:
-			std::cout << "SKP";
+			std::cout << "SKP: " << (u16)rm[x];
 			if(IS_PRESSED(m_keys, rm[x]))
 			  memory++;
 			break;
 			
 		  case Opcode::SKNP:
-			std::cout << "SKNP";
+			std::cout << "SKNP: " << (u16)rm[x];
 			if(IS_NOT_PRESSED(m_keys, rm[x]))
 			  memory++;
 			break;
@@ -248,15 +246,15 @@ namespace chip8
 		break;
 		
 	  case 0xF000:
-		switch(opcode)
+		switch(opcode & 0xF0FF)
 		  {
 		  case Opcode::LD_DT_R:
-			std::cout << "LD_DT_R";
+			std::cout << "LD_DT_R: " << (u16)rm[x];
 			rm[x] = g_delay_timer;
 			break;
 			
 		  case Opcode::LD_K_R: {
-			std::cout << "LD_K_R";
+			std::cout << "LD_K_R: ";
 			while(!(m_keys = get_keys()))
 			  sf::sleep(sf::milliseconds(1));
 			
@@ -270,12 +268,12 @@ namespace chip8
 			break;
 			
 		  case Opcode::LD_R_DT:
-			std::cout << "LD_R_DT";
+			std::cout << "LD_R_DT: " << (u16)rm[x];
 			g_delay_timer = rm[x];
 			break;
 			
 		  case Opcode::LD_R_ST:
-			std::cout << "LD_R_ST";
+			std::cout << "LD_R_ST: " << (u16)rm[x];
 			g_sound_timer = rm[x];
 			break;
 			
@@ -285,19 +283,19 @@ namespace chip8
 			break;
 			
 		  case Opcode::LD_F:
-			std::cout << "LD_F";
+			std::cout << "LD_F: ";
 			break;
 			
 		  case Opcode::LD_B:
-			std::cout << "LD_B";
+			std::cout << "LD_B: ";
 			break;
 			
 		  case Opcode::LD_R_M:
-			std::cout << "LD_R_M";
+			std::cout << "LD_R_M: ";
 			break;
 			
 		  case Opcode::LD_M_R:
-			std::cout << "LD_M_R";
+			std::cout << "LD_M_R: ";
 			break;
 		  }
 		break;

@@ -38,25 +38,22 @@ public:
 	bool erased{false};
 	const int start{t_x + t_y * m_width};
 
-	std::cout << "\n[";
-	for(int index_x{0}, index_y{0}; t_begin < t_end; t_begin++)
-	  {
-		std::cout << (u16)(*t_begin) << ", ";
-		// Sprites are 8 pixels wide
-		u8& pixel{m_display[start + index_x + index_y * m_width]};
-		if(pixel && *t_begin)
-		  erased = true;
-		
-		pixel ^= *t_begin;
-
-		if(index_x >= 7)
+	for(int index_y{0}; t_begin < t_end; t_begin++, index_y++)
+	  { // Sprites are 8 pixels wide
+		for(int index_x{0}; index_x < 8; index_x++)
 		  {
-			index_x = 0;
-			index_y++;
+			// Sprites are 8 pixels wide
+			u8& pixel{m_display[start + index_x + index_y * m_width]};
+
+			// 8 bit integers, also reverse it to get the characters facing the right way
+			const bool sprite_bit{*t_begin << index_x & 0x80};
+
+			if(pixel && sprite_bit)
+			  erased = true;
+
+			pixel ^= sprite_bit;
 		  }
-		else index_x++;
 	  }
-	std::cout << ']';
 
 	return erased;
   }

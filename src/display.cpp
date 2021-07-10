@@ -21,7 +21,7 @@ Display::Display()
 void Display::clear()
 {
   m_display.fill(0);
-  m_window.clear();
+  m_window.clear(sf::Color::Black);
 }
 
 void Display::print()
