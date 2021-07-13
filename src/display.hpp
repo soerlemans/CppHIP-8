@@ -36,16 +36,21 @@ public:
   bool draw_sprite(const u8 t_x, const u8 t_y, Begin t_begin, End t_end)
   {
 	bool erased{false};
-	const int start{t_x + t_y * m_width};
+	// Draw the sprite starting on the specified coordinates
+	const int start_coordinate{t_x + t_y * m_width};
 
 	for(int index_y{0}; t_begin < t_end; t_begin++, index_y++)
 	  { // Sprites are 8 pixels wide
 		for(int index_x{0}; index_x < 8; index_x++)
 		  {
-			// Sprites are 8 pixels wide
-			u8& pixel{m_display[start + index_x + index_y * m_width]};
+			u16 coordinate{(u16)(start_coordinate + index_x + index_y * m_width)};
 
-			// 8 bit integers, also reverse it to get the characters facing the right way
+			if(coordinate > m_display.size())
+			  return erased;
+			
+			u8& pixel{m_display[coordinate]};
+
+			// The sprites are stored as bits 
 			const bool sprite_bit{*t_begin << index_x & 0x80};
 
 			if(pixel && sprite_bit)

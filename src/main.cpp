@@ -1,6 +1,7 @@
 #include <SFML/System/Sleep.hpp>
 #include <SFML/System/Time.hpp>
 
+#include <SFML/Window/Keyboard.hpp>
 #include <array>
 #include <cstdint>
 #include <exception>
@@ -13,13 +14,21 @@
 #include "registermap.hpp"
 #include "stack.hpp"
 #include "display.hpp"
+#include "timer.hpp"
 #include "utils.hpp"
 
 int main(int argc, char *argv[])
 {
+  if(argc < 2)
+	{
+	  std::cerr << "No rom path was given!\n";
+	  return 1;
+	}
+
+  std::string rom_path{argv[1]};
+  
   // Define variables
-  chip8::Memory memory{"../roms/INVADERS"};
-  // chip8::Memory memory{"../roms/TEST"};
+  chip8::Memory memory{rom_path};
   memory.start();
   
   chip8::RegisterMap rm;
@@ -28,21 +37,22 @@ int main(int argc, char *argv[])
 
   chip8::Emulator emulator(&memory, &rm, &stack, &display);
 
+  std::chrono::milliseconds ms{16};
+  Timer timer{ms};
+
   try{
-	while(true)
+	for(bool quit{false}; !quit;)
 	  {
+		emulator.timers();
 		emulator.cycle();
-
 		display.print();
-
-		if(chip8::g_delay_timer)
-		  chip8::g_delay_timer--;
-
-		if(chip8::g_sound_timer)
-		  chip8::g_sound_timer--;
-
-		// Delay to not run on full cpu (Hardlocked at 60FPS)
-		sf::sleep(sf::milliseconds(16));
+		
+		// Locks the execution to exactly 60 Hz
+		while(!timer.check())
+		  ;
+		
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		  quit = true;
 	  }
   }catch(std::exception& e)
 	{

@@ -1,6 +1,8 @@
 main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/include/SFML/System/Sleep.hpp /usr/include/SFML/System/Export.hpp \
  /usr/include/SFML/Config.hpp /usr/include/SFML/System/Time.hpp \
+ /usr/include/SFML/Window/Keyboard.hpp \
+ /usr/include/SFML/Window/Export.hpp \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/array \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/utility \
  /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -249,12 +251,11 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/include/SFML/System/Vector3.hpp \
  /usr/include/SFML/System/Vector3.inl \
  /usr/include/SFML/Window/Clipboard.hpp \
- /usr/include/SFML/Window/Export.hpp /usr/include/SFML/Window/Context.hpp \
+ /usr/include/SFML/Window/Context.hpp \
  /usr/include/SFML/Window/GlResource.hpp \
  /usr/include/SFML/Window/ContextSettings.hpp \
  /usr/include/SFML/Window/Cursor.hpp /usr/include/SFML/Window/Event.hpp \
- /usr/include/SFML/Window/Joystick.hpp \
- /usr/include/SFML/Window/Keyboard.hpp /usr/include/SFML/Window/Mouse.hpp \
+ /usr/include/SFML/Window/Joystick.hpp /usr/include/SFML/Window/Mouse.hpp \
  /usr/include/SFML/Window/Sensor.hpp /usr/include/SFML/Window/Touch.hpp \
  /usr/include/SFML/Window/VideoMode.hpp \
  /usr/include/SFML/Window/Window.hpp \
@@ -290,12 +291,17 @@ main.o: main.cpp /usr/include/stdc-predef.h \
  /usr/include/SFML/Graphics/Glsl.hpp /usr/include/SFML/Graphics/Glsl.inl \
  /usr/include/SFML/Graphics/Sprite.hpp \
  /usr/include/SFML/Graphics/Text.hpp \
- /usr/include/SFML/Graphics/VertexBuffer.hpp
+ /usr/include/SFML/Graphics/VertexBuffer.hpp timer.hpp \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/chrono \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ratio \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/parse_numbers.h
 /usr/include/stdc-predef.h:
 /usr/include/SFML/System/Sleep.hpp:
 /usr/include/SFML/System/Export.hpp:
 /usr/include/SFML/Config.hpp:
 /usr/include/SFML/System/Time.hpp:
+/usr/include/SFML/Window/Keyboard.hpp:
+/usr/include/SFML/Window/Export.hpp:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/array:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/utility:
 /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/x86_64-pc-linux-gnu/bits/c++config.h:
@@ -594,14 +600,12 @@ display.hpp:
 /usr/include/SFML/System/Vector3.hpp:
 /usr/include/SFML/System/Vector3.inl:
 /usr/include/SFML/Window/Clipboard.hpp:
-/usr/include/SFML/Window/Export.hpp:
 /usr/include/SFML/Window/Context.hpp:
 /usr/include/SFML/Window/GlResource.hpp:
 /usr/include/SFML/Window/ContextSettings.hpp:
 /usr/include/SFML/Window/Cursor.hpp:
 /usr/include/SFML/Window/Event.hpp:
 /usr/include/SFML/Window/Joystick.hpp:
-/usr/include/SFML/Window/Keyboard.hpp:
 /usr/include/SFML/Window/Mouse.hpp:
 /usr/include/SFML/Window/Sensor.hpp:
 /usr/include/SFML/Window/Touch.hpp:
@@ -643,3 +647,7 @@ display.hpp:
 /usr/include/SFML/Graphics/Sprite.hpp:
 /usr/include/SFML/Graphics/Text.hpp:
 /usr/include/SFML/Graphics/VertexBuffer.hpp:
+timer.hpp:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/chrono:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/ratio:
+/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/g++-v11/bits/parse_numbers.h:

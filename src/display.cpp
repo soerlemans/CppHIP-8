@@ -30,11 +30,13 @@ void Display::print()
 	for(int y{0}; y < m_height; y++)
 	  {
 		sf::RectangleShape rect{sf::Vector2f{10, 10}};
-		rect.setFillColor(sf::Color::White);
+
+		if(!m_display[x + m_width * y])
+		  rect.setFillColor(sf::Color::Black);
+
 		rect.move(x * 10, y * 10);
 
-		if(m_display[x + m_width* y])
-		  m_window.draw(rect);
+		m_window.draw(rect);
 	  }
 
   m_window.display();

@@ -7,6 +7,7 @@
 
 #include "keys.hpp"
 #include "utils.hpp"
+#include <cstdint>
 
 // Specifies an operation between two registers
 #define R_OP(x, y, OP)							\
@@ -14,18 +15,26 @@
 
 namespace chip8
 {
-  
-  // Variable initialization
-  u8 g_delay_timer{0};
-  u8 g_sound_timer{0};
-  
   Emulator::Emulator(Memory *t_memory, RegisterMap *t_rm,
 					 Stack* t_stack, Display *t_display)
 	:m_memory{t_memory}, m_rm{t_rm}, m_stack{t_stack}, m_display{t_display},
-	 m_keys{0}, m_jumped{false}
+	 m_keys{0}, m_jumped{false}, m_gen32{(uint_least32_t)time(0)},
+	 m_delay_timer{0}, m_sound_timer{0}
   {
   }
-  
+
+  void Emulator::timers()
+  {
+	if(m_delay_timer)
+	  m_delay_timer--;
+
+	if(m_sound_timer)
+	  {
+		m_sound_timer--;
+	  }
+  }
+
+  // Remove all the std::cout's or lock them behind a debug mode
   void Emulator::register_operations()
   {
 	// TODO: Make a macro for these operations
@@ -59,17 +68,24 @@ namespace chip8
 		
 	  case Opcode::ADD_R: 
 		std::cout << "ADD";
-		// Not complete
+		// Account for integer overflow
+		if(rm[x] + rm[y] > 255)
+		  rm[RegisterName::VF] = 1;
+
 		R_OP(x, y, +=);
 		break;
 		
 	  case Opcode::SUB_R: 
 		std::cout << "SUB";
 		// Not complete
+		if(rm[x] < rm[y])
+		  rm[RegisterName::VF] = 1;
+
 		R_OP(x, y, -=);
 		break;
 
 	  case Opcode::SHR_R:
+		// Shift right
 		std::cout << "SHR";
 		// Not complete
 		rm[RegisterName::VF] = (rm[x] & 0x01) ?
@@ -81,10 +97,14 @@ namespace chip8
 	  case Opcode::SUBN_R:
 		std::cout << "SUBN";
 		// Not complete
+		if(rm[y] < rm[x])
+		  rm[RegisterName::VF] = 1;
+
 		rm[x] = rm[y] - rm[x];
 		break;
 
 	  case Opcode::SHL_R:
+		// Shift left
 		std::cout << "SHL";
 		// Not complete
 		rm[RegisterName::VF] = (rm[x] & 0x80) ?
@@ -223,8 +243,9 @@ namespace chip8
 		std::vector<u8> sprite{sprite_len};
 		sprite.resize(sprite_len);
 		memory.copy_nth(memory.get_ir(), sprite_len, sprite.begin());
-		
-		display.draw_sprite(rm[x], rm[y], sprite.cbegin(), sprite.cend());
+
+		rm[RegisterName::VF] = 0;
+		rm[RegisterName::VF] = display.draw_sprite(rm[x], rm[y], sprite.cbegin(), sprite.cend());
 		break;
 	  }
 		
@@ -250,7 +271,7 @@ namespace chip8
 		  {
 		  case Opcode::LD_DT_R:
 			std::cout << "LD_DT_R: " << (u16)rm[x];
-			rm[x] = g_delay_timer;
+			rm[x] = m_delay_timer;
 			break;
 			
 		  case Opcode::LD_K_R: {
@@ -269,12 +290,12 @@ namespace chip8
 			
 		  case Opcode::LD_R_DT:
 			std::cout << "LD_R_DT: " << (u16)rm[x];
-			g_delay_timer = rm[x];
+			m_delay_timer = rm[x];
 			break;
 			
 		  case Opcode::LD_R_ST:
 			std::cout << "LD_R_ST: " << (u16)rm[x];
-			g_sound_timer = rm[x];
+			m_sound_timer = rm[x];
 			break;
 			
 		  case Opcode::ADD_I:

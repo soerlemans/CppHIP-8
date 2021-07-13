@@ -12,14 +12,9 @@ namespace chip8
   class Stack;
   class Display;
 
-  extern u8 g_delay_timer;
-  extern u8 g_sound_timer;
-
   class Emulator
   {
   private:
-	std::mt19937 m_gen32;
-	
 	Memory* m_memory;
 	RegisterMap* m_rm;
 	Stack* m_stack;
@@ -27,10 +22,17 @@ namespace chip8
 
 	u16 m_keys;
 	bool m_jumped;
+
+	u8 m_delay_timer;
+	u8 m_sound_timer;
+	
+	std::mt19937 m_gen32;
 	
   public:
 	Emulator(Memory* t_memory, RegisterMap* t_rm, Stack* t_stack, Display* t_display);
 
+	void timers();
+	
 	void register_operations();
 	void cycle();
   };
