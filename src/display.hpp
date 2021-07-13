@@ -51,7 +51,7 @@ public:
 			u8& pixel{m_display[coordinate]};
 
 			// The sprites are stored as bits 
-			const bool sprite_bit{*t_begin << index_x & 0x80};
+			const bool sprite_bit{(bool)(*t_begin << index_x & 0x80)};
 
 			if(pixel && sprite_bit)
 			  erased = true;

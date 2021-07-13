@@ -18,7 +18,8 @@ namespace chip8
   Emulator::Emulator(Memory *t_memory, RegisterMap *t_rm,
 					 Stack* t_stack, Display *t_display)
 	:m_memory{t_memory}, m_rm{t_rm}, m_stack{t_stack}, m_display{t_display},
-	 m_keys{0}, m_jumped{false}, m_gen32{(uint_least32_t)time(0)},
+	 m_keys{0}, m_jumped{false},
+	 m_gen32{(uint_least32_t)time(0)},
 	 m_delay_timer{0}, m_sound_timer{0}
   {
   }
@@ -29,9 +30,7 @@ namespace chip8
 	  m_delay_timer--;
 
 	if(m_sound_timer)
-	  {
-		m_sound_timer--;
-	  }
+	  m_sound_timer--;
   }
 
   // Remove all the std::cout's or lock them behind a debug mode
@@ -242,7 +241,7 @@ namespace chip8
 
 		std::vector<u8> sprite{sprite_len};
 		sprite.resize(sprite_len);
-		memory.copy_nth(memory.get_ir(), sprite_len, sprite.begin());
+		memory.get_nth(sprite_len, sprite.begin());
 
 		rm[RegisterName::VF] = 0;
 		rm[RegisterName::VF] = display.draw_sprite(rm[x], rm[y], sprite.cbegin(), sprite.cend());
@@ -285,8 +284,8 @@ namespace chip8
 				  rm[x] = index;
 				  break;
 				}
-			}
 			break;
+			}
 			
 		  case Opcode::LD_R_DT:
 			std::cout << "LD_R_DT: " << (u16)rm[x];
@@ -303,20 +302,42 @@ namespace chip8
 			memory.inc_ir(rm[x]);
 			break;
 			
-		  case Opcode::LD_F:
-			std::cout << "LD_F: ";
+		  case Opcode::LD_FONT:
+			std::cout << "LD_FONT:";
+			// Convert the value in register[x] to a its sprite value
+			// The internal fontset has 5 bytes per character
+			memory.set_ir(rm[x] * 5);
 			break;
 			
-		  case Opcode::LD_B:
-			std::cout << "LD_B: ";
+		  case Opcode::LD_BCD: {
+			std::cout << "LD_BCD: Rx: " << (u16)rm[x] << " BCD: ";
+			// Decimal to BCD notation
+			u16 bcd{0};
+			for(int buffer{rm[x]}, index{0}; buffer; index += 4)
+			  {
+				bcd |= (u8)(buffer % 10);
+				bcd <<= index;
+				buffer /= 10;
+			  }
+			std::cout << std::hex << bcd << std::dec;
+			memory.set_ir(bcd);
 			break;
+		  }
 			
 		  case Opcode::LD_R_M:
-			std::cout << "LD_R_M: ";
+			std::cout << "LD_R_M: X: " << (u16)x;
+			// TODO: Solve these concept errors
+			//memory.set_nth(rm.begin(), rm.begin() + x);
+
+			memory.inc_ir(x + 1);
 			break;
 			
 		  case Opcode::LD_M_R:
-			std::cout << "LD_M_R: ";
+			std::cout << "LD_M_R: X: " << (u16)x;
+			// TODO: Solve these template errors
+			// memory.get_nth(x, rm.begin());
+			
+			memory.inc_ir(x + 1);
 			break;
 		  }
 		break;

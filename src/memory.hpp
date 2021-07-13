@@ -46,9 +46,9 @@ namespace chip8
 	LD_R_DT = 0xF015,
 	LD_R_ST = 0xF018,
 
-	ADD_I = 0xF01E,
-	LD_F  = 0xF029,
-	LD_B  = 0xF033,
+	ADD_I   = 0xF01E,
+	LD_FONT = 0xF029,
+	LD_BCD  = 0xF033,
 
 	LD_R_M = 0xF055,
 	LD_M_R = 0xF065
@@ -77,11 +77,21 @@ namespace chip8
 	void inc_ir(const u16 t_inc);
 	[[nodiscard]] u16 get_ir() const;
 
+	std::array<u8, 4096>::const_iterator begin();
+	std::array<u8, 4096>::const_iterator end();
+	
 	template<typename T>
-	void copy_nth(const u16 t_addr, const u8 t_nth, T t_iter) const
+	void set_nth(T t_begin, T t_end)
 	{
-	  const auto start{m_memory.cbegin() + t_addr};
-	  std::copy(start, start + t_nth, t_iter);
+	  const auto iter{m_memory.cbegin() + m_index_register};
+	  std::copy(t_begin, t_end, iter);
+	}
+
+	template<typename T>
+	void get_nth(const u8 t_nth, T t_iter) const
+	{
+	  const auto begin{m_memory.cbegin() + m_index_register};
+	  std::copy(begin, begin + t_nth, t_iter);
 	}
 
 	[[nodiscard]] u8& operator[](const size_t t_index);

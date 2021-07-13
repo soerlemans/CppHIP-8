@@ -18,7 +18,9 @@ namespace chip8
   public:
 	RegisterMap();
 
+	std::array<u8, 16>::const_iterator begin() const;
+	std::array<u8, 16>::const_iterator end() const;
+
 	u8& operator[](const u8 t_index);
   };
-
 }

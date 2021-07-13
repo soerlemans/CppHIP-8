@@ -23,10 +23,10 @@ namespace chip8
 	u16 m_keys;
 	bool m_jumped;
 
+	std::mt19937 m_gen32;
+
 	u8 m_delay_timer;
 	u8 m_sound_timer;
-	
-	std::mt19937 m_gen32;
 	
   public:
 	Emulator(Memory* t_memory, RegisterMap* t_rm, Stack* t_stack, Display* t_display);

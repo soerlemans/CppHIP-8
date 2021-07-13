@@ -99,6 +99,16 @@ u16 Memory::get_ir() const
   return m_index_register;
 }
 
+std::array<u8, 4096>::const_iterator Memory::begin()
+{
+  return m_memory.begin();
+}
+
+std::array<u8, 4096>::const_iterator Memory::end()
+{
+  return m_memory.end();
+}
+	
 u8& Memory::operator[](const size_t t_index)
 {
   return m_memory[t_index];
