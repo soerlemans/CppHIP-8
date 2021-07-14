@@ -7,6 +7,7 @@
 
 #include "keys.hpp"
 #include "utils.hpp"
+#include <array>
 #include <cstdint>
 
 // Specifies an operation between two registers
@@ -46,27 +47,27 @@ namespace chip8
 	switch(opcode & 0xF00F)
 	  {
 	  case Opcode::LD_R:
-		std::cout << "LD";
+		DEBUG_MSG("LD");
 		R_OP(x, y, =);
 		break;
 		
 	  case Opcode::OR_R: 
-		std::cout << "OR";
+		DEBUG_MSG("OR");
 		R_OP(x, y, |=);
 		break;
 		
 	  case Opcode::AND_R: 
-		std::cout << "AND";
+		DEBUG_MSG("AND");
 		R_OP(x, y, &=);
 		break;
 		
 	  case Opcode::XOR_R: 
-		std::cout << "XOR";
+		DEBUG_MSG("XOR");
 		R_OP(x, y, ^=);
 		break;
 		
 	  case Opcode::ADD_R: 
-		std::cout << "ADD";
+		DEBUG_MSG("ADD");
 		// Account for integer overflow
 		if(rm[x] + rm[y] > 255)
 		  rm[RegisterName::VF] = 1;
@@ -75,8 +76,8 @@ namespace chip8
 		break;
 		
 	  case Opcode::SUB_R: 
-		std::cout << "SUB";
-		// Not complete
+		DEBUG_MSG("SUB");
+		// Account for integer onderflow
 		if(rm[x] < rm[y])
 		  rm[RegisterName::VF] = 1;
 
@@ -85,8 +86,7 @@ namespace chip8
 
 	  case Opcode::SHR_R:
 		// Shift right
-		std::cout << "SHR";
-		// Not complete
+		DEBUG_MSG("SHR");
 		rm[RegisterName::VF] = (rm[x] & 0x01) ?
 		  1 : 0;
 		
@@ -94,18 +94,17 @@ namespace chip8
 		break;
 
 	  case Opcode::SUBN_R:
-		std::cout << "SUBN";
-		// Not complete
+		DEBUG_MSG("SUBN");
+		// Account for underflow again
 		if(rm[y] < rm[x])
 		  rm[RegisterName::VF] = 1;
 
-		rm[x] = rm[y] - rm[x];
+		rm[x] = R_OP(y, x, -);
 		break;
 
 	  case Opcode::SHL_R:
 		// Shift left
-		std::cout << "SHL";
-		// Not complete
+		DEBUG_MSG("SHL");
 		rm[RegisterName::VF] = (rm[x] & 0x80) ?
 		  1 : 0;
 		
@@ -113,9 +112,10 @@ namespace chip8
 		break;
 	  }
 
-	std::cout << ": " << std::hex << "x: " << (u16)x << " y: " << (u16)y << std::dec << " Rx: " << (u16)rm[x] << " Ry: " << (u16)rm[y];
+	DEBUG_MSG(": " << std::hex << "x: " << (u16)x << " y: " << (u16)y << std::dec << " Rx: " << (u16)rm[x] << " Ry: " << (u16)rm[y]);
   }
-  
+
+  // TODO: Shorten this function to fit on one screen
   void Emulator::cycle()
   {
 	auto& memory{*m_memory};
@@ -131,7 +131,7 @@ namespace chip8
 	// Update the keys every cycle
 	m_keys = get_keys();
 	
-	std::cout << memory.get_pc() << 'x' << std::hex << opcode << std::dec << ": ";
+	DEBUG_MSG(memory.get_pc() << 'x' << std::hex << opcode << std::dec << ": ");
 	
 	// TODO: Cut the function down and spread the functionalities
 	switch(opcode & 0xF000)
@@ -140,26 +140,26 @@ namespace chip8
 		switch(opcode & 0x00FF)
 		  {
 		  case Opcode::CLS:
-			std::cout << "CLS";
+			DEBUG_MSG("CLS");
 			display.clear();
 			break;
 			
 		  case Opcode::RET: {
 			const u16 addr{stack.pop()};
-			std::cout << "RET: " << addr;
+			DEBUG_MSG("RET: " << addr);
 			memory.jump(addr);
 			break;
 		  }
 			
 		  default:
 			// Runs assembly on host machine (deprecated, functionality)
-			std::cout << "SYS: " << (opcode & 0x0FFF);
+			DEBUG_MSG("SYS: " << (opcode & 0x0FFF));
 			break;
 		  }
 		break;
 		
 	  case Opcode::JMP: {
-		std::cout << "JMP: " << (opcode & 0x0FFF);
+		DEBUG_MSG("JMP: " << (opcode & 0x0FFF));
 		const u16 addr{(u16)(opcode & 0x0FFF)};
 		memory.jump(addr);
 
@@ -168,7 +168,7 @@ namespace chip8
 	  }
 		
 	  case Opcode::CALL:
-		std::cout << "CALL: " << (opcode & 0x0FFF);
+		DEBUG_MSG("CALL: " << (opcode & 0x0FFF));
 		stack.push(memory.get_pc());
 		memory.jump(opcode & 0x0FFF);
 
@@ -176,30 +176,30 @@ namespace chip8
 		break;
 		
 	  case Opcode::SE:
-		std::cout << "SE: " << (u16)rm[x] << " == " << (u16)byte;
+		DEBUG_MSG("SE: " << (u16)rm[x] << " == " << (u16)byte);
 		if(rm[x] == byte)
 		  memory++;
 		break;
 		
 	  case Opcode::SNE:
-		std::cout << "SNE: " << (u16)rm[x] << " != " << (u16)byte;
+		DEBUG_MSG("SNE: " << (u16)rm[x] << " != " << (u16)byte);
 		if(rm[x] != byte)
 		  memory++;
 		break;
 		
 	  case Opcode::SE_R:
-		std::cout << "SE_R: " << (u16)rm[x] << " == " << (u16)rm[y];
+		DEBUG_MSG("SE_R: " << (u16)rm[x] << " == " << (u16)rm[y]);
 		if(rm[x] == rm[y])
 		  memory++;
 		break;
 		
 	  case Opcode::LD: 
-		std::cout << "LD: x: " << std::hex << (int)x << std::dec << " byte: " << (int)byte;
+		DEBUG_MSG("LD: x: " << std::hex << (int)x << std::dec << " byte: " << (int)byte);
 		rm[x] = byte;
 		break;
 		
 	  case Opcode::ADD:
-		std::cout << "ADD: " << (u16)rm[x] << " += " << (u16)byte;
+		DEBUG_MSG("ADD: " << (u16)rm[x] << " += " << (u16)byte);
 		rm[x] += byte;
 		break;
 		
@@ -208,36 +208,36 @@ namespace chip8
 		break;
 		
 	  case Opcode::SNE_R:
-		std::cout << "SNE_R: " << (u16)rm[x] << " != " << (u16)rm[y];
+		DEBUG_MSG("SNE_R: " << (u16)rm[x] << " != " << (u16)rm[y]);
 		if(rm[x] != rm[y])
 		  memory++;
 		break;
 		
 	  case Opcode::LD_I:
-		std::cout << "LD_I: " << (opcode &0x0FFF);
+		DEBUG_MSG("LD_I: " << (opcode &0x0FFF));
 		memory.set_ir(opcode & 0x0FFF);
 		break;
 		
 	  case Opcode::JMP_V0:
-		std::cout << "JMP_V0: " << (rm[RegisterName::V0] + (opcode & 0x0FFF));
+		DEBUG_MSG("JMP_V0: " << (rm[RegisterName::V0] + (opcode & 0x0FFF)));
 		memory.jump(rm[RegisterName::V0] + (opcode & 0x0FFF));
 
 		m_jumped = true;
 		break;
 		
 	  case Opcode::RND: {
-		std::cout << "RND: ";
+		DEBUG_MSG("RND: ");
 		const u8 bm{(u8)(opcode & 0x00FF)};
 		const u8 rb{(u8)(m_gen32() & 0x00FF)};
 		
-		std::cout << std::hex << (u16)x << std::dec << " = " << (rb & bm); 
+		DEBUG_MSG(std::hex << (u16)x << std::dec << " = " << (rb & bm)); 
 		rm[x] = rb & bm;
 		break;
 	  }
 		
 	  case Opcode::DRW: {
 		const u8 sprite_len{(u8)(opcode & 0x000F)};
-		std::cout << "DRW: " << " I: " << memory.get_ir() << " x: " << (u16)rm[x] << " y: " << (u16)rm[y] << " n: " << (u16)sprite_len;
+		DEBUG_MSG("DRW: " << " I: " << memory.get_ir() << " x: " << (u16)rm[x] << " y: " << (u16)rm[y] << " n: " << (u16)sprite_len);
 
 		std::vector<u8> sprite{sprite_len};
 		sprite.resize(sprite_len);
@@ -252,13 +252,13 @@ namespace chip8
 		switch (opcode & 0xF0FF)
 		  {
 		  case Opcode::SKP:
-			std::cout << "SKP: " << (u16)rm[x];
+			DEBUG_MSG("SKP: " << (u16)rm[x]);
 			if(IS_PRESSED(m_keys, rm[x]))
 			  memory++;
 			break;
 			
 		  case Opcode::SKNP:
-			std::cout << "SKNP: " << (u16)rm[x];
+			DEBUG_MSG("SKNP: " << (u16)rm[x]);
 			if(IS_NOT_PRESSED(m_keys, rm[x]))
 			  memory++;
 			break;
@@ -269,12 +269,12 @@ namespace chip8
 		switch(opcode & 0xF0FF)
 		  {
 		  case Opcode::LD_DT_R:
-			std::cout << "LD_DT_R: " << (u16)rm[x];
+			DEBUG_MSG("LD_DT_R: " << (u16)rm[x]);
 			rm[x] = m_delay_timer;
 			break;
 			
 		  case Opcode::LD_K_R: {
-			std::cout << "LD_K_R: ";
+			DEBUG_MSG("LD_K_R: ");
 			while(!(m_keys = get_keys()))
 			  sf::sleep(sf::milliseconds(1));
 			
@@ -285,32 +285,32 @@ namespace chip8
 				  break;
 				}
 			break;
-			}
+		  }
 			
 		  case Opcode::LD_R_DT:
-			std::cout << "LD_R_DT: " << (u16)rm[x];
+			DEBUG_MSG("LD_R_DT: " << (u16)rm[x]);
 			m_delay_timer = rm[x];
 			break;
 			
 		  case Opcode::LD_R_ST:
-			std::cout << "LD_R_ST: " << (u16)rm[x];
+			DEBUG_MSG("LD_R_ST: " << (u16)rm[x]);
 			m_sound_timer = rm[x];
 			break;
 			
 		  case Opcode::ADD_I:
-			std::cout << "ADD_I: " << memory.get_ir() << " += " << (u16)rm[x]; 
+			DEBUG_MSG("ADD_I: " << memory.get_ir() << " += " << (u16)rm[x]); 
 			memory.inc_ir(rm[x]);
 			break;
 			
 		  case Opcode::LD_FONT:
-			std::cout << "LD_FONT:";
+			DEBUG_MSG("LD_FONT:");
 			// Convert the value in register[x] to a its sprite value
 			// The internal fontset has 5 bytes per character
 			memory.set_ir(rm[x] * 5);
 			break;
 			
 		  case Opcode::LD_BCD: {
-			std::cout << "LD_BCD: Rx: " << (u16)rm[x] << " BCD: ";
+			DEBUG_MSG("LD_BCD: Rx: " << (u16)rm[x] << " BCD: ");
 			// Decimal to BCD notation
 			u16 bcd{0};
 			for(int buffer{rm[x]}, index{0}; buffer; index += 4)
@@ -319,35 +319,32 @@ namespace chip8
 				bcd <<= index;
 				buffer /= 10;
 			  }
-			std::cout << std::hex << bcd << std::dec;
+			DEBUG_MSG(std::hex << bcd << std::dec);
 			memory.set_ir(bcd);
 			break;
 		  }
 			
 		  case Opcode::LD_R_M:
-			std::cout << "LD_R_M: X: " << (u16)x;
+			DEBUG_MSG("LD_R_M: X: " << (u16)x);
 			// TODO: Solve these concept errors
-			//memory.set_nth(rm.begin(), rm.begin() + x);
+			memory.set(rm.begin(), rm.begin() + x);
 
 			memory.inc_ir(x + 1);
 			break;
 			
 		  case Opcode::LD_M_R:
-			std::cout << "LD_M_R: X: " << (u16)x;
-			// TODO: Solve these template errors
-			// memory.get_nth(x, rm.begin());
+			DEBUG_MSG("LD_M_R: X: " << (u16)x);
+			// For some reason this iterator is getting cast to const char*
+			// Without this explicit cast TODO: Find out why
+			memory.get_nth(x, (std::array<u8, 16>::iterator)rm.begin());
 			
 			memory.inc_ir(x + 1);
 			break;
 		  }
 		break;
-		
-	  default:
-		std::cerr << "unknown opcode: " << ((opcode & 0xF000) >> 12);
-		break;
 	  }
 
-	std::cout << '\n';
+	DEBUG_MSG('\n');
 
 	if(!m_jumped)
 	  memory++;

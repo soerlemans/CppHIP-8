@@ -81,16 +81,16 @@ namespace chip8
 	std::array<u8, 4096>::const_iterator end();
 	
 	template<typename T>
-	void set_nth(T t_begin, T t_end)
+	void set(T t_begin, T t_end)
 	{
-	  const auto iter{m_memory.cbegin() + m_index_register};
+	  const auto iter{m_memory.begin() + m_index_register};
 	  std::copy(t_begin, t_end, iter);
 	}
 
 	template<typename T>
 	void get_nth(const u8 t_nth, T t_iter) const
 	{
-	  const auto begin{m_memory.cbegin() + m_index_register};
+	  const auto begin{m_memory.begin() + m_index_register};
 	  std::copy(begin, begin + t_nth, t_iter);
 	}
 

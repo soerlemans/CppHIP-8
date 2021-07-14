@@ -8,6 +8,7 @@
 #include <iostream>
 #include <random>
 #include <sstream>
+#include <stdexcept>
 
 #include "emulator.hpp"
 #include "memory.hpp"
@@ -28,19 +29,20 @@ int main(int argc, char *argv[])
   std::string rom_path{argv[1]};
   
   // Define variables
-  chip8::Memory memory{rom_path};
-  memory.start();
-  
-  chip8::RegisterMap rm;
-  chip8::Stack stack;
-  chip8::Display display;
-
-  chip8::Emulator emulator(&memory, &rm, &stack, &display);
-
-  std::chrono::milliseconds ms{16};
-  Timer timer{ms};
-
   try{
+	chip8::Memory memory{rom_path};
+
+	memory.start();
+	
+	chip8::RegisterMap rm;
+	chip8::Stack stack;
+	chip8::Display display;
+	
+	chip8::Emulator emulator(&memory, &rm, &stack, &display);
+	
+	std::chrono::milliseconds ms{16};
+	Timer timer{ms};
+	
 	for(bool quit{false}; !quit;)
 	  {
 		emulator.timers();
@@ -54,9 +56,15 @@ int main(int argc, char *argv[])
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 		  quit = true;
 	  }
-  }catch(std::exception& e)
+  }catch(const std::runtime_error& e)
 	{
-	  std::cout << e.what() << std::endl;
+	  std::cerr << "RT ERROR: " << e.what() << std::endl;
+	  return 2;
+	}
+  catch(const std::exception& e)
+	{
+	  std::cerr << "EXCEPT: " << e.what() << std::endl;
+	  return 3;
 	}
 
   return 0;

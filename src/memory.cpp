@@ -50,6 +50,11 @@ Memory::Memory(const std::string& t_path)
   std::fill(m_memory.begin() + 5 * 16, m_memory.end(), 0);
 
   std::ifstream ifs{t_path, std::ios::binary};
+
+  if(ifs.is_open() == false)
+	{
+	  throw std::runtime_error{"Rom cant be opened for reading!"};
+	}
   for(int index{StartMemory}; !ifs.eof(); index++)
 	ifs.read((char *)&(m_memory[index]), sizeof(char));
 
@@ -116,7 +121,7 @@ u8& Memory::operator[](const size_t t_index)
 
 Memory& Memory::operator++()
 {
-  if(m_pc + 2 > m_memory.size())
+  if(m_pc + 2 > (int)m_memory.size())
 	{
 	  std::ostringstream ss;
 	  ss << "Out of bounds access(upper): [" << m_pc << "] size: " << m_memory.size() << '\n';
